@@ -29,7 +29,7 @@ A GraphQL API for managing documents organized into collections, built with Bun,
 
 3. Configure environment - ensure .env has:
 
-DATABASE_URL="postgresql://vault:vault@localhost:5433/document_vault"
+
 
 
 4. Run migrations:
@@ -42,7 +42,7 @@ DATABASE_URL="postgresql://vault:vault@localhost:5433/document_vault"
    bun run src/index.ts
 ```
 
-6. Open http://localhost:4000/graphql for the GraphiQL playground.
+
 
 ## API
 
