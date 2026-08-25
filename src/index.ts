@@ -10,5 +10,5 @@ const yoga = createYoga({ schema });
 const server = createServer(yoga);
 
 server.listen(4000, () => {
-  console.log("🚀 Document Vault API running at http://localhost:4000/graphql");
+  console.log(" Document Vault API running at http://localhost:4000/graphql");
 });

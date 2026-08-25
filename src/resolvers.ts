@@ -11,14 +11,22 @@ export const resolvers = {
     collection: (_parent: unknown, args: { id: string }) =>
       prisma.collection.findUnique({ where: { id: args.id } }),
 
-    documents: (_parent: unknown, args: { collectionId?: string; isArchived?: boolean }) =>
-      prisma.document.findMany({
-        where: {
-          ...(args.collectionId ? { collectionId: args.collectionId } : {}),
-          ...(args.isArchived !== undefined ? { isArchived: args.isArchived } : {}),
-        },
-        orderBy: { createdAt: "desc" },
-      }),
+ documents: (_parent: unknown, args: { collectionId?: string; isArchived?: boolean; search?: string }) =>
+  prisma.document.findMany({
+    where: {
+      ...(args.collectionId ? { collectionId: args.collectionId } : {}),
+      ...(args.isArchived !== undefined ? { isArchived: args.isArchived } : {}),
+      ...(args.search
+        ? {
+            OR: [
+              { title: { contains: args.search, mode: "insensitive" } },
+              { content: { contains: args.search, mode: "insensitive" } },
+            ],
+          }
+        : {}),
+    },
+    orderBy: { createdAt: "desc" },
+  }),
 
     document: (_parent: unknown, args: { id: string }) =>
       prisma.document.findUnique({ where: { id: args.id } }),

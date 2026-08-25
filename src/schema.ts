@@ -40,7 +40,7 @@ export const typeDefs = /* GraphQL */ `
   type Query {
     collections: [Collection!]!
     collection(id: ID!): Collection
-    documents(collectionId: ID, isArchived: Boolean): [Document!]!
+   documents(collectionId: ID, isArchived: Boolean, search: String): [Document!]!
     document(id: ID!): Document
   }
 
